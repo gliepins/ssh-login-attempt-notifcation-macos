@@ -4,6 +4,14 @@ Get **Notification Center** alerts when someone connects to **SSH (port 22)** on
 
 **Upstream repository:** [github.com/gliepins/ssh-login-attempt-notifcation-macos](https://github.com/gliepins/ssh-login-attempt-notifcation-macos)
 
+### Why this exists
+
+I keep **Remote Login** enabled for my own use: SSH is **restricted** the way I need it, and I mostly reach it over **tunnels**. I also work from **untrusted networks** from time to time. I did not want to **toggle Sharing** every time I changed location, so I needed visibility **without** constantly opening and closing Remote Login.
+
+On this machine, **SSH is often the only listening service** exposed to the network. That makes it worth **monitoring deliberately**: alerts when something hits the port, plus a **single readable log** of `sshd`-related activity. Neither is obvious from day-to-day use of macOS, and relying on **Console** or raw unified logs for routine checks is **slow and awkward**. This project is a small LaunchAgent plus script that closes that gap.
+
+It does **not** enable verbose OpenSSH **file** logging; it uses **`log stream`** and TCP polling instead — see [docs/manual.md](docs/manual.md) for the distinction.
+
 ## What it does
 
 | Source | Behavior |
